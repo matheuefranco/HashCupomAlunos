@@ -43,8 +43,17 @@ public class App {
         System.out.println("Digite o valor original da venda: ");
         double valorOriginal = leia.nextDouble();
         leia.nextLine(); // Limpa o buffer do scanner
-        System.out.print("Digite a data da venda (formato YYYY-MM-DD): ");
-        LocalDate dataVenda = LocalDate.parse(leia.nextLine());
+        System.out.println("Venda foi realizada hoje?");
+        String resp = leia.nextLine();
+        boolean vendaHoje = resp.equalsIgnoreCase("sim");
+        LocalDate dataVenda;
+        if (!vendaHoje) {
+            System.out.print("Digite a data da venda (formato YYYY-MM-DD): ");
+             dataVenda = LocalDate.parse(leia.nextLine());
+        }else {
+             dataVenda = LocalDate.now();
+        }
+    
         return new Venda(idCliente, valorOriginal, codigoCupom, dataVenda);
     }
 
@@ -68,7 +77,7 @@ public class App {
             opcao = menu();
             switch (opcao) {
                 case 1:
-                    //
+                    // realizar a venda e apresentar o valor após o desconto caso houver
                     break;
                 case 2:
                     //
@@ -85,9 +94,7 @@ public class App {
         } while (opcao != 0);
 
         // --- RESULTADO FINAL ---
-        System.out.println("\n========================================");
-        System.out.println("Relatório Final de Cupons Processados:");
-        System.out.println(validador.getCuponsProcessados());
+        // mostre todos os cupons processados e vendas realizadas
         System.out.println("========================================");
     }
 }

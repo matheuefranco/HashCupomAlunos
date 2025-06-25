@@ -6,10 +6,14 @@ public class Venda {
     private final String codigoCupom;
     private final LocalDate dataVenda;
     private final double valorOriginal;
+    private double valorFinalComDesconto;
+
+
 
     public Venda(int idCliente, double valorOriginal, String codigoCupom, LocalDate dataVenda) {
         this.idCliente = idCliente;
         this.valorOriginal = valorOriginal;
+        this.valorFinalComDesconto = this.valorOriginal;
         this.codigoCupom = codigoCupom;
         this.dataVenda = dataVenda;
     }
@@ -30,6 +34,15 @@ public class Venda {
         return valorOriginal;
     }
 
+    
+    public double getValorFinalComDesconto() {
+        return valorFinalComDesconto;
+    }
+
+    public void setValorFinalComDesconto(double valorFinalComDesconto) {
+        this.valorFinalComDesconto = valorFinalComDesconto;
+    }
+
     @Override
     public String toString() {
         return "Venda{" +
@@ -39,4 +52,5 @@ public class Venda {
                 ", valorOriginal=" + valorOriginal +
                 '}';
     }
+
 }

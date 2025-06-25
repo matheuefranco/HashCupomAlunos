@@ -2,13 +2,13 @@ package cupomapp.service;
 
 import cupomapp.model.Cupom;
 import cupomapp.model.Venda;
-import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class ValidadorCupomService {
 
     private HashMap<String, Cupom> cuponsAtivos;
-    private HashMap<String, LocalDate> cuponsProcessados = new HashMap<>();
+    private HashSet<String> cuponsProcessados = new HashSet<>();
 
     public HashMap<String, Cupom> getCuponsAtivos() {
         return cuponsAtivos;
@@ -21,7 +21,7 @@ public class ValidadorCupomService {
         this.cuponsAtivos.put(cupom.getCodigo(), cupom);
     }
 
-    public HashMap<String, LocalDate> getCuponsProcessados() {
+    public HashSet<String> getCuponsProcessados() {
         return cuponsProcessados;
     }
     public void setCuponsAtivos(HashMap<String, Cupom> cuponsAtivos) {
@@ -46,12 +46,13 @@ public class ValidadorCupomService {
         // 2. O cupom não está expirado? return false se expirado
 
 
-        // 3. O cliente já usou este cupom hoje? return false se já usado hoje
+        // 3. O cliente já usou este cupom ? return false se já usado
 
 
         // Se todas as validações passaram, o cupom é válido.
+        // atualize o valor de valorFinalComDesconto da venda
         // Registre o uso do cupom neste momento.
-        //cuponsProcessados.put----
+        //cuponsProcessados.add id do cliente + cupom
         return true;
     }
     
